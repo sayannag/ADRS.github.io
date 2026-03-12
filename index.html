@@ -203,6 +203,165 @@
         </div>
     </section>
 
+    <!-- Interactive Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-icon"><i class="fas fa-play-circle"></i></span>
+                Demo
+            </h2>
+            
+            <p class="demo-intro">
+                Watch how Agentic-DRS analyzes a design step-by-step through its multi-agent review process.
+            </p>
+            
+            <div class="demo-container">
+                <div class="demo-input">
+                    <div class="demo-input-header">
+                        <i class="fas fa-image"></i>
+                        <span>Input Design</span>
+                    </div>
+                    <div class="demo-design-wrapper">
+                        <img src="assets/images/Infographics.png" alt="Futurology Infographics" class="demo-design-image" id="demoImage">
+                    </div>
+                    <div class="demo-progress-wrapper">
+                        <div class="demo-progress-bar" id="demoProgress"></div>
+                    </div>
+                    <div class="demo-loop-indicator">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Auto-playing demo</span>
+                    </div>
+                </div>
+                
+                <div class="demo-output">
+                    <div class="demo-output-header">
+                        <i class="fas fa-comments"></i>
+                        <span>Agentic-DRS Feedback</span>
+                        <div class="demo-status" id="demoStatus">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Starting...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-agents" id="demoAgents">
+                        
+                        <div class="agent-step hidden" id="step-meta-planning">
+                            <div class="agent-header">
+                                <div class="agent-icon meta"><i class="fas fa-brain"></i></div>
+                                <div class="agent-info">
+                                    <span class="agent-name">Meta Agent</span>
+                                    <span class="agent-phase">Planning Phase</span>
+                                </div>
+                                <div class="agent-spinner"></div>
+                            </div>
+                            <div class="agent-content">
+                                <p>Analyzing design structure and assigning specialized reviewers...</p>
+                                <div class="agent-tags">
+                                    <span class="tag">Typography Expert</span>
+                                    <span class="tag">Color Expert</span>
+                                    <span class="tag">Layout Expert</span>
+                                    <span class="tag">Dynamic: Style</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="agent-step hidden" id="step-static-1">
+                            <div class="agent-header">
+                                <div class="agent-icon static"><i class="fas fa-font"></i></div>
+                                <div class="agent-info">
+                                    <span class="agent-name">Static Agent 1</span>
+                                    <span class="agent-phase">Typography & Text Review</span>
+                                </div>
+                                <div class="agent-spinner"></div>
+                            </div>
+                            <div class="agent-content">
+                                <div class="feedback-item">
+                                    <span class="feedback-label warning">Bad typo colors</span>
+                                    <p>The lighter gray text on a white background (e.g., "Lorem Ipsum" placeholder text) could be darker for better readability.</p>
+                                </div>
+                                <div class="feedback-item">
+                                    <span class="feedback-label warning">Text-rendering quality</span>
+                                    <p>If this infographic is scaled down, some smaller text elements (like in the charts) may become difficult to read. Consider slightly increasing the font size for key figures.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="agent-step hidden" id="step-static-2">
+                            <div class="agent-header">
+                                <div class="agent-icon static"><i class="fas fa-palette"></i></div>
+                                <div class="agent-info">
+                                    <span class="agent-name">Static Agent 2</span>
+                                    <span class="agent-phase">Color & Visual Harmony Review</span>
+                                </div>
+                                <div class="agent-spinner"></div>
+                            </div>
+                            <div class="agent-content">
+                                <div class="feedback-item">
+                                    <span class="feedback-label warning">Color harmony, Wrong color palettes</span>
+                                    <p>While the icons and charts are vibrant, some text elements don't match the same level of emphasis. Using bolder colors for section headings could create a stronger hierarchy. Some sections visually blend due to similar color backgrounds.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="agent-step hidden" id="step-static-3">
+                            <div class="agent-header">
+                                <div class="agent-icon static"><i class="fas fa-th"></i></div>
+                                <div class="agent-info">
+                                    <span class="agent-name">Static Agent 3</span>
+                                    <span class="agent-phase">Layout & Spacing Review</span>
+                                </div>
+                                <div class="agent-spinner"></div>
+                            </div>
+                            <div class="agent-content">
+                                <div class="feedback-item">
+                                    <span class="feedback-label warning">Alignment</span>
+                                    <p>Some text blocks align too closely to graphics (e.g., in the "Future City Development" section). Slightly adjusting text placement could improve clarity.</p>
+                                </div>
+                                <div class="feedback-item">
+                                    <span class="feedback-label warning">Spacing</span>
+                                    <p>Some sections feel densely packed with icons, text, and charts. Adding a little more padding between elements could enhance clarity.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="agent-step hidden" id="step-dynamic">
+                            <div class="agent-header">
+                                <div class="agent-icon dynamic"><i class="fas fa-magic"></i></div>
+                                <div class="agent-info">
+                                    <span class="agent-name">Dynamic Agent</span>
+                                    <span class="agent-phase">Image-Text Alignment Review</span>
+                                </div>
+                                <div class="agent-spinner"></div>
+                            </div>
+                            <div class="agent-content">
+                                <div class="feedback-item">
+                                    <span class="feedback-label warning">Image-text alignment</span>
+                                    <p>Ensure proportional scaling of visual elements. Some icons (e.g., robots in the "Ubiquitous Introduction of Robotics" section) are disproportionately large compared to text, which creates imbalance. Resizing some visuals for a better text-to-image ratio would improve flow.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="agent-step hidden" id="step-summary">
+                            <div class="agent-header">
+                                <div class="agent-icon meta"><i class="fas fa-clipboard-check"></i></div>
+                                <div class="agent-info">
+                                    <span class="agent-name">Meta Agent</span>
+                                    <span class="agent-phase">Summarization Phase</span>
+                                </div>
+                                <div class="agent-spinner"></div>
+                            </div>
+                            <div class="agent-content">
+                                <div class="summary-text">
+                                    <p><strong>Summary:</strong> This Futurology Infographics design shows good visual appeal but has opportunities for improvement in text contrast, spacing consistency, and visual hierarchy. Implementing the suggested changes would enhance readability and professional appearance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Results Section -->
     <section class="results-section" id="results">
         <div class="container">
@@ -459,6 +618,116 @@
                 indicator.style.opacity = 1 - (window.scrollY / 200);
             }
         });
+
+        // Automatic Demo Animation (GIF-like)
+        const steps = [
+            'step-meta-planning',
+            'step-static-1',
+            'step-static-2',
+            'step-static-3',
+            'step-dynamic',
+            'step-summary'
+        ];
+
+        let demoObserver = null;
+        let demoStarted = false;
+
+        function runAutomaticDemo() {
+            const status = document.getElementById('demoStatus');
+            const progressBar = document.getElementById('demoProgress');
+            
+            status.querySelector('.status-text').textContent = 'Analyzing';
+            status.classList.add('active');
+            status.classList.remove('complete');
+            
+            let currentStep = 0;
+            const totalSteps = steps.length;
+
+            function showNextStep() {
+                if (currentStep < totalSteps) {
+                    const stepEl = document.getElementById(steps[currentStep]);
+                    const demoAgents = document.getElementById('demoAgents');
+                    stepEl.classList.remove('hidden');
+                    stepEl.classList.add('animating');
+                    
+                    // Auto-scroll to the new step
+                    setTimeout(() => {
+                        stepEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                    
+                    // Update progress
+                    const progress = ((currentStep + 1) / totalSteps) * 100;
+                    progressBar.style.width = progress + '%';
+
+                    setTimeout(() => {
+                        stepEl.classList.remove('animating');
+                        stepEl.classList.add('complete');
+                        currentStep++;
+                        setTimeout(showNextStep, 1000);
+                    }, 1500);
+                } else {
+                    // Complete
+                    status.querySelector('.status-text').textContent = 'Complete';
+                    status.classList.remove('active');
+                    status.classList.add('complete');
+                    
+                    // Wait, then reset and loop
+                    setTimeout(() => {
+                        resetAndLoop();
+                    }, 4000);
+                }
+            }
+
+            setTimeout(showNextStep, 800);
+        }
+
+        function resetAndLoop() {
+            const status = document.getElementById('demoStatus');
+            const progressBar = document.getElementById('demoProgress');
+            
+            // Fade out effect
+            const demoAgents = document.getElementById('demoAgents');
+            demoAgents.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Reset all steps
+                steps.forEach(stepId => {
+                    const stepEl = document.getElementById(stepId);
+                    stepEl.classList.add('hidden');
+                    stepEl.classList.remove('animating', 'complete');
+                });
+                
+                // Reset status
+                status.querySelector('.status-text').textContent = 'Starting...';
+                status.classList.remove('active', 'complete');
+                progressBar.style.width = '0%';
+                
+                // Fade back in
+                demoAgents.style.opacity = '1';
+                
+                // Start again
+                setTimeout(runAutomaticDemo, 500);
+            }, 500);
+        }
+
+        // Start demo when section comes into view
+        function initDemoObserver() {
+            const demoSection = document.getElementById('demo');
+            
+            demoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !demoStarted) {
+                        demoStarted = true;
+                        setTimeout(runAutomaticDemo, 500);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            demoObserver.observe(demoSection);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initDemoObserver);
     </script>
 </body>
 </html>
