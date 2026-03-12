@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Design Review System | AAAI 2026</title>
+    <link rel="icon" type="image/png" href="assets/images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="conference-badge">
+                <span class="badge-icon"><i class="fas fa-award"></i></span>
+                <span>AAAI 2026</span>
+            </div>
+            <h1 class="title">
+                <span class="title-icon"><img src="assets/images/icon.png" alt="icon"></span>
+                Agentic Design Review System
+            </h1>
+            <p class="subtitle">The First Multi-Agent Framework for Holistic Graphic Design Evaluation and Actionable Feedback Generation</p>
+            
+            <div class="authors">
+                <a href="https://sayannag.github.io/" target="_blank" class="author">Sayan Nag</a>,
+                <a href="https://josephkj.in/" target="_blank" class="author">K J Joseph</a>,
+                <a href="https://research.adobe.com/person/koustava-goswami/" target="_blank" class="author">Koustava Goswami</a>,
+                <a href="https://research.adobe.com/person/vlad-morariu/" target="_blank" class="author">Vlad I Morariu</a>,
+                <a href="https://research.adobe.com/person/balaji-vasan-srinivasan/" target="_blank" class="author">Balaji Vasan Srinivasan</a>
+            </div>
+            <div class="affiliation">
+                 <span>Adobe Research</span>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="https://arxiv.org/abs/2508.10745" class="btn btn-primary">
+                    <i class="fas fa-file-pdf"></i>
+                    Paper
+                </a>
+                <a href="#citation" class="btn btn-secondary">
+                    <i class="fas fa-quote-left"></i>
+                    BibTeX
+                </a>
+            </div>
+        </div>
+        <a href="#abstract" class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </header>
+
+    <!-- Teaser Section -->
+    <section class="teaser-section">
+        <div class="container">
+            <div class="teaser-wrapper">
+                <img src="assets/images/teaser_v5.png" alt="Agentic Design Review System Overview" class="teaser-image">
+            </div>
+            <p class="teaser-caption">
+                <strong>Inspired by conference peer-review:</strong> Just as expert reviewers evaluate papers across multiple dimensions, 
+                our Agentic-DRS employs specialized AI agents to analyze graphic designs from multiple perspectives—typography, color harmony, 
+                alignment, spacing, and more—orchestrated by a meta-agent to generate holistic scores and actionable feedback.
+            </p>
+        </div>
+    </section>
+
+    <!-- Abstract Section -->
+    <section class="abstract-section" id="abstract">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-icon"><i class="fas fa-lightbulb"></i></span>
+                Abstract
+            </h2>
+            <div class="abstract-content">
+                <p>
+                    Evaluating graphic designs involves assessing them from <strong>multiple facets</strong> like alignment, composition, 
+                    aesthetics, and color choices. Evaluating designs in a holistic way involves aggregating feedback from individual 
+                    expert reviewers. Towards this, we propose an <strong>Agentic Design Review System (Agentic-DRS)</strong>, where 
+                    multiple agents collaboratively analyze a design, orchestrated by a meta-agent.
+                </p>
+                <p>
+                    A novel <strong>in-context exemplar selection approach based on graph matching</strong> and a unique 
+                    <strong>prompt expansion method</strong> plays central role towards making each agent design aware. 
+                    Towards evaluating this framework, we propose <strong>DRS-Bench</strong> benchmark.
+                </p>
+                <p>
+                    Thorough experimental evaluation against state-of-the-art baselines, backed-up with critical ablation experiments 
+                    brings out the efficacy of Agentic-DRS in evaluating graphic designs and generating actionable feedback.
+                </p>
+            </div>
+            
+            <div class="key-contributions">
+                <h3>Key Contributions</h3>
+                <div class="contributions-grid">
+                    <div class="contribution-card">
+                        <div class="contribution-icon"><i class="fas fa-robot"></i></div>
+                        <h4>First Agentic Framework</h4>
+                        <p>Multi-agent system with static and dynamic agents for comprehensive design evaluation</p>
+                    </div>
+                    <div class="contribution-card">
+                        <div class="contribution-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h4>Graph-based GRAD</h4>
+                        <p>Novel in-context exemplar selection using Wasserstein and Gromov-Wasserstein distances</p>
+                    </div>
+                    <div class="contribution-card">
+                        <div class="contribution-icon"><i class="fas fa-align-left"></i></div>
+                        <h4>Structured Design Description</h4>
+                        <p>Anchoring MLLM responses with visually grounded textual descriptions</p>
+                    </div>
+                    <div class="contribution-card">
+                        <div class="contribution-icon"><i class="fas fa-chart-bar"></i></div>
+                        <h4>DRS-Bench</h4>
+                        <p>Comprehensive benchmark with 4 datasets, 15 attributes, and novel evaluation metrics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Section -->
+    <section class="method-section" id="method">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-icon"><i class="fas fa-cogs"></i></span>
+                Method Overview
+            </h2>
+            
+            <div class="method-diagram">
+                <img src="assets/images/Agentic-DRS-Main_Diagram_v6.png" alt="Agentic-DRS Pipeline" class="method-image">
+            </div>
+            
+            <div class="method-description">
+                <p>
+                    Our framework consists of three key components that work together to enable comprehensive design evaluation:
+                </p>
+            </div>
+            
+            <div class="method-components">
+                <div class="method-card">
+                    <div class="method-card-header">
+                        <span class="method-number">01</span>
+                        <h3>GRAD: Graph-based Design Exemplar Selection</h3>
+                    </div>
+                    <div class="method-card-content">
+                        <p>
+                            Unlike conventional approaches that rely on global CLIP features, GRAD constructs 
+                            <strong>graph representations</strong> that encode semantic, spatial, and structural relationships 
+                            between design elements.
+                        </p>
+                        <ul>
+                            <li><strong>Node Matching:</strong> Wasserstein Distance for semantic feature alignment</li>
+                            <li><strong>Edge Matching:</strong> Gromov-Wasserstein Distance for structural topology preservation</li>
+                            <li><strong>Result:</strong> Structure-aware retrieval of in-context examples</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-card-header">
+                        <span class="method-number">02</span>
+                        <h3>SDD: Structured Design Description</h3>
+                    </div>
+                    <div class="method-card-content">
+                        <p>
+                            Generate textual descriptions containing element descriptions and hierarchical structure 
+                            with optional bounding box coordinates.
+                        </p>
+                        <ul>
+                            <li>Combines visual perception with explicit structural details</li>
+                            <li>Improves design attribute understanding and anomaly detection</li>
+                            <li>Reduces hallucinations and enables actionable feedback</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-card-header">
+                        <span class="method-number">03</span>
+                        <h3>Agentic Design Review System</h3>
+                    </div>
+                    <div class="method-card-content">
+                        <p>
+                            A multi-agent framework inspired by conference peer-review with three phases:
+                        </p>
+                        <div class="agent-phases">
+                            <div class="phase">
+                                <span class="phase-label">Planning</span>
+                                <p>Meta-agent assigns static and dynamic reviewers based on design context</p>
+                            </div>
+                            <div class="phase">
+                                <span class="phase-label">Reviewing</span>
+                                <p>Agents evaluate design attributes and generate individual feedback</p>
+                            </div>
+                            <div class="phase">
+                                <span class="phase-label">Summarization</span>
+                                <p>Meta-agent consolidates scores and produces unified actionable feedback</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="results">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-icon"><i class="fas fa-chart-line"></i></span>
+                Results
+            </h2>
+            
+            <div class="results-highlight">
+                <div class="highlight-stat">
+                    <span class="stat-value">+12.4%</span>
+                    <span class="stat-label">Accuracy Improvement</span>
+                    <span class="stat-detail">Over GPT-4o baseline on Afixa</span>
+                </div>
+                <div class="highlight-stat">
+                    <span class="stat-value">76.8%</span>
+                    <span class="stat-label">Best Accuracy</span>
+                    <span class="stat-detail">On Internal Design Dataset</span>
+                </div>
+                <div class="highlight-stat">
+                    <span class="stat-value">0.834</span>
+                    <span class="stat-label">Overlap Correlation</span>
+                    <span class="stat-detail">With human ratings on GDE</span>
+                </div>
+            </div>
+            
+            <div class="results-table-wrapper">
+                <h3>Performance on DRS-Bench</h3>
+                <div class="table-scroll">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Method</th>
+                                <th colspan="3">Afixa</th>
+                                <th colspan="3">Infographic</th>
+                                <th colspan="3">GDE (Correlation)</th>
+                            </tr>
+                            <tr>
+                                <th>Acc ↑</th>
+                                <th>Sens ↑</th>
+                                <th>Spec ↑</th>
+                                <th>Acc ↑</th>
+                                <th>Sens ↑</th>
+                                <th>Spec ↑</th>
+                                <th>Align ↑</th>
+                                <th>Overlap ↑</th>
+                                <th>Whitespace ↑</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>GPT-4o</td>
+                                <td>62.91</td>
+                                <td>65.42</td>
+                                <td>64.26</td>
+                                <td>58.26</td>
+                                <td>61.92</td>
+                                <td>56.74</td>
+                                <td>0.597</td>
+                                <td>0.782</td>
+                                <td>0.665</td>
+                            </tr>
+                            <tr>
+                                <td>GPT-4o + GRAD</td>
+                                <td>64.57</td>
+                                <td>68.65</td>
+                                <td>65.18</td>
+                                <td>60.41</td>
+                                <td>63.57</td>
+                                <td>59.66</td>
+                                <td>0.639</td>
+                                <td>0.796</td>
+                                <td>0.688</td>
+                            </tr>
+                            <tr>
+                                <td>GPT-4o + GRAD + SDD</td>
+                                <td>67.33</td>
+                                <td>69.60</td>
+                                <td>68.21</td>
+                                <td>64.95</td>
+                                <td>66.21</td>
+                                <td>62.12</td>
+                                <td>0.677</td>
+                                <td>0.809</td>
+                                <td>0.703</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td><strong>Agentic-DRS (GPT-4o)</strong></td>
+                                <td><strong>75.29</strong></td>
+                                <td><strong>77.65</strong></td>
+                                <td><strong>72.53</strong></td>
+                                <td><strong>69.53</strong></td>
+                                <td><strong>75.37</strong></td>
+                                <td><strong>71.94</strong></td>
+                                <td><strong>0.722</strong></td>
+                                <td><strong>0.834</strong></td>
+                                <td><strong>0.748</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="qualitative-results">
+                <h3>Qualitative Example</h3>
+                <div class="qual-wrapper">
+                    <img src="assets/images/Qual_Fig_1_final.png" alt="Qualitative Results" class="qual-image">
+                </div>
+                <p class="qual-caption">
+                    Agentic-DRS generates detailed, actionable feedback covering multiple design attributes including color harmony, 
+                    spacing, typography, grouping, alignment, composition, and style. The feedback quality is validated by both 
+                    automated metrics (AIM) and human ratings.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benchmark Section -->
+    <section class="benchmark-section" id="benchmark">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-icon"><i class="fas fa-database"></i></span>
+                DRS-Bench: Design Review System Benchmark
+            </h2>
+            
+            <p class="benchmark-intro">
+                A comprehensive benchmark for measuring design effectiveness, enabling fair comparisons and fostering improvements 
+                in automated design tools.
+            </p>
+            
+            <div class="benchmark-grid">
+                <div class="benchmark-card datasets-card">
+                    <h3><i class="fas fa-folder-open"></i> 4 Datasets</h3>
+                    <ul>
+                        <li><strong>GDE:</strong> 700 designs with alignment, overlap, whitespace ratings (1-10 scale)</li>
+                        <li><strong>Afixa:</strong> 71 designs with 5 binary attributes</li>
+                        <li><strong>Infographic:</strong> 55 designs with layout metadata and 15 attributes</li>
+                        <li><strong>IDD:</strong> 137 professionally curated designs with 15 attributes</li>
+                    </ul>
+                </div>
+                
+                <div class="benchmark-card attributes-card">
+                    <h3><i class="fas fa-tags"></i> 15 Design Attributes</h3>
+                    <div class="attributes-list">
+                        <span class="attribute-tag">Text-rendering</span>
+                        <span class="attribute-tag">Typography</span>
+                        <span class="attribute-tag">Color harmony</span>
+                        <span class="attribute-tag">Alignment</span>
+                        <span class="attribute-tag">Spacing</span>
+                        <span class="attribute-tag">Composition</span>
+                        <span class="attribute-tag">Overlap</span>
+                        <span class="attribute-tag">Grouping</span>
+                        <span class="attribute-tag">Style</span>
+                        <span class="attribute-tag">Aesthetics</span>
+                        <span class="attribute-tag">Image-text alignment</span>
+                        <span class="attribute-tag">Color palette</span>
+                        <span class="attribute-tag">Bad images</span>
+                        <span class="attribute-tag">Font variety</span>
+                        <span class="attribute-tag">Word count</span>
+                    </div>
+                </div>
+                
+                <div class="benchmark-card metrics-card">
+                    <h3><i class="fas fa-ruler"></i> Evaluation Metrics</h3>
+                    <div class="metrics-content">
+                        <div class="metric-group">
+                            <h4>Discrete Evaluation</h4>
+                            <p>Accuracy, Sensitivity, Specificity for multi-label classification</p>
+                        </div>
+                        <div class="metric-group">
+                            <h4>Continuous Evaluation</h4>
+                            <p>Pearson correlation with human ratings</p>
+                        </div>
+                        <div class="metric-group">
+                            <h4>Feedback Evaluation (AIM)</h4>
+                            <p>Actionable Insights Metric via LLM and semantic similarity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citation Section -->
+    <section class="citation-section" id="citation">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-icon"><i class="fas fa-quote-left"></i></span>
+                Citation
+            </h2>
+            
+            <div class="citation-box">
+                <button class="copy-btn" onclick="copyBibtex()">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+                <pre><code>@inproceedings{nag2026agentic,
+    title={Agentic Design Review System},
+    author={Nag, Sayan and Joseph, K J and Goswami, Koustava 
+            and Morariu, Vlad I and Srinivasan, Balaji Vasan},
+    booktitle={Proceedings of the AAAI Conference on 
+               Artificial Intelligence},
+    year={2026}
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>
+                    <i class="fas fa-flask"></i> 
+                    Research by <a href="https://research.adobe.com/" target="_blank">Adobe Research</a>
+                </p>
+                <p class="footer-note">
+                    This page template is inspired by academic project pages. 
+                </p>
+            </div>
+        </div>
+    </footer> -->
+
+    <script>
+        function copyBibtex() {
+            const bibtex = `@inproceedings{nag2026agentic,
+    title={Agentic Design Review System},
+    author={Nag, Sayan and Joseph, K J and Goswami, Koustava and Morariu, Vlad I and Srinivasan, Balaji Vasan},
+    booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+    year={2026}
+}`;
+            navigator.clipboard.writeText(bibtex).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                }, 2000);
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll indicator fade
+        window.addEventListener('scroll', () => {
+            const indicator = document.querySelector('.scroll-indicator');
+            if (indicator) {
+                indicator.style.opacity = 1 - (window.scrollY / 200);
+            }
+        });
+    </script>
+</body>
+</html>
