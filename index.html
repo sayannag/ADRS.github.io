@@ -260,7 +260,7 @@
                                     <span class="tag">Typography Expert</span>
                                     <span class="tag">Color Expert</span>
                                     <span class="tag">Layout Expert</span>
-                                    <span class="tag">Dynamic: Image-Text Alignment</span>
+                                    <span class="tag">Dynamic: Style</span>
                                 </div>
                             </div>
                         </div>
@@ -669,9 +669,11 @@
                     stepEl.classList.remove('hidden');
                     stepEl.classList.add('animating');
                     
-                    // Auto-scroll to the new step
-                    setTimeout(() => {
-                        stepEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    // Auto-scroll within the demo container only (not the page)
+                    setTimeout(function() {
+                        if (demoAgents && stepEl) {
+                            demoAgents.scrollTop = stepEl.offsetTop - demoAgents.offsetTop;
+                        }
                     }, 100);
                     
                     // Update progress
