@@ -632,9 +632,28 @@
         let demoObserver = null;
         let demoStarted = false;
 
+        // Ensure all steps are hidden on page load
+        function hideAllSteps() {
+            steps.forEach(function(stepId) {
+                const stepEl = document.getElementById(stepId);
+                if (stepEl) {
+                    stepEl.classList.add('hidden');
+                    stepEl.classList.remove('animating', 'complete');
+                }
+            });
+        }
+
         function runAutomaticDemo() {
             const status = document.getElementById('demoStatus');
             const progressBar = document.getElementById('demoProgress');
+            
+            if (!status || !progressBar) {
+                console.error('Demo elements not found');
+                return;
+            }
+            
+            // Hide all steps first
+            hideAllSteps();
             
             status.querySelector('.status-text').textContent = 'Analyzing';
             status.classList.add('active');
@@ -714,20 +733,47 @@
         function initDemoObserver() {
             const demoSection = document.getElementById('demo');
             
-            demoObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !demoStarted) {
-                        demoStarted = true;
-                        setTimeout(runAutomaticDemo, 500);
-                    }
-                });
-            }, { threshold: 0.3 });
+            if (!demoSection) {
+                console.error('Demo section not found');
+                return;
+            }
             
-            demoObserver.observe(demoSection);
+            // Check if IntersectionObserver is supported
+            if ('IntersectionObserver' in window) {
+                demoObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !demoStarted) {
+                            demoStarted = true;
+                            setTimeout(runAutomaticDemo, 500);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                demoObserver.observe(demoSection);
+            } else {
+                // Fallback: start demo after a delay
+                setTimeout(() => {
+                    if (!demoStarted) {
+                        demoStarted = true;
+                        runAutomaticDemo();
+                    }
+                }, 2000);
+            }
         }
 
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', initDemoObserver);
+        function initDemo() {
+            // First, ensure all steps are hidden
+            hideAllSteps();
+            // Then set up the observer
+            initDemoObserver();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initDemo);
+        } else {
+            initDemo();
+        }
     </script>
 </body>
 </html>
